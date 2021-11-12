@@ -20,7 +20,7 @@ RUN apk add --no-cache tzdata
 ENV TZ Asia/Shanghai
 
 COPY --from=builder /x-ui/x-ui  ./
-COPY --from=builder /x-ui/bin/geoip.dat /x-ui/bin/geosite.dat /x-ui/bin/x-ray-$TARGETOS-$TARGETARCH ./bin/
+COPY --from=builder /x-ui/bin/geoip.dat /x-ui/bin/geosite.dat /x-ui/bin/xray-$TARGETOS-$TARGETARCH ./bin/
 
 EXPOSE 54321
 
