@@ -2,6 +2,8 @@ FROM golang:1.16-alpine as builder
 
 WORKDIR /x-ui
 
+RUN apk add --no-cache build-base
+
 COPY . .
 
 RUN CGO_ENABLED=1 go build -o x-ui .
