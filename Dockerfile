@@ -4,7 +4,7 @@ WORKDIR /x-ui
 
 COPY . .
 
-RUN go build -o x-ui .
+RUN CGO_ENABLED=1 go build -o x-ui .
 
 FROM alpine
 
