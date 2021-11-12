@@ -2,29 +2,18 @@ FROM golang:1.16-alpine as builder
 
 WORKDIR /x-ui
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --no-cache build-base
-
-ENV GO111MODULE=on \
-    GOPROXY=https://goproxy.cn,direct
-
-COPY ./go.mod ./go.sum ./
-
-RUN go mod download
-
 COPY . .
 
-RUN CGO_ENABLED=1 go build -a -o x-ui main.go
+RUN go build -o x-ui .
 
-FROM alpine:3.13
+FROM alpine
 
 ARG TARGETARCH
 ARG TARGETOS
 
 WORKDIR /x-ui
 
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --no-cache tzdata
+RUN apk add --no-cache tzdata
 
 ENV TZ Asia/Shanghai
 

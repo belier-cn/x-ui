@@ -51,7 +51,7 @@ jobs:
         with:
           builder: ${{ steps.buildx.outputs.name }}
           context: .
-          file: /Dockerfile
+          file: ./Dockerfile
           target: prod
           platforms: linux/amd64,linux/arm64
           push: ${{ github.event_name != 'pull_request' }}
